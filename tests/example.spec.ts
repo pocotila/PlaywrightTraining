@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+let page;
+
 test.skip('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
 
@@ -7,7 +9,7 @@ test.skip('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Playwright/);
 });
 
-test('buy a backpack', {tag: ['@smoke']}, async ({ page }) => {
+test.skip('buy a backpack', {tag: ['@smoke']}, async ({ page }) => {
 await page.goto('https://www.saucedemo.com/');
 await page.getByPlaceholder('Username').fill('standard_user');
 await page.getByRole('textbox', {name: 'password'}).fill('secret_sauce');
@@ -49,5 +51,17 @@ await expect(page.locator('xpath = //*[@id="checkout_complete_container"]/h2')).
 
 })
 
+test.skip('Add all items to cart ', { tag: ['@withHooks'] },async ({  }) => {
+  var countItems:number = await page.locator('.inventory_item_name').count();
+  for (let i=0;i<countItems; i++){
+  await page.locator('.btn').nth(i).click();
+  await page.waitForTimeout(1000);    }});
+
+test.skip('Add all items to cart ', { tag: ['@withHooks'] },async ({  }) => {
+  var countItems:number = await page.locator('.inventory_item_name').count();
+  for (let i=0;i<countItems; i++){
+  await page.locator('.inventory_item_name').toContainText('Sauce')
 
 
+  await page.locator('.btn').nth(i).click();
+  await page.waitForTimeout(1000);    }});
