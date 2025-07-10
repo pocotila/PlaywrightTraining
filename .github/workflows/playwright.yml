@@ -6,7 +6,7 @@ on:
         description: "Select from tags: @smoke, @regression"
         required: false
         default: ""
-  push:Q
+  push:
   branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
